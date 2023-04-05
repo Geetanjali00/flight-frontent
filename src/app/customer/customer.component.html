@@ -1,0 +1,108 @@
+<div class="row">
+    <div class="col-md-3">
+        <h4>Book Ticket</h4>
+        <hr/>
+        <div class="card card-body bg-light">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" [(ngModel)]="passengername" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label>Source Destination</label>
+                    <input type="text"  [(ngModel)]="passengersource" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Source Destination">
+                </div>
+                <div class="form-group">
+                    <label>Final Destination</label>
+                    <input type="text" [(ngModel)]="passengerdest" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Final Destination">
+                </div>
+                <div class="form-group">
+                    <label>Mobile</label>
+                    <input type="text" [(ngModel)]="mobile" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Mobile">
+                </div>
+                <br/>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger pull-right" (click)="cleardata()">Clear</button> &nbsp;
+                   
+                    <button type="submit" class="btn btn-primary mt-1" (click)="save()">Save</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h4> Ticket History</h4>
+        <hr/>
+        <div class="card card-body bg-light">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Source Destination</th>
+                        <th scope="col">Final Destination</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Timer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let TicketItem of TicketArray">
+                        <th scope="row">{{TicketItem.ticketid }}</th>
+                        <td>{{TicketItem.passengername  | uppercase}}</td>
+                        <td>{{TicketItem.passengersource }}</td>
+                        <td>{{TicketItem.passengerdest }}</td>
+                        <td>{{TicketItem.mobile }}</td>
+                        <td>{{ ticketTimers[TicketItem.ticketid]?.formattedTime }}</td>
+
+             
+                        <td>
+                          <button type="button" class="btn btn-success" (click)="setUpdate(TicketItem)">Edit</button> &nbsp;
+                          
+                          <button type="button" class="btn btn-danger" (click)="setDelete(TicketItem)">Delete</button>
+                          <!-- <div>
+                            <label>Hours:</label>
+                            <input type="number" [(ngModel)]="hours" (change)="updateTime()"/>
+                            <label>Minutes:</label>
+                            <input type="number" [(ngModel)]="minutes" (change)="updateTime()"/>
+                            <label>Seconds:</label>
+                            <input type="number" [(ngModel)]="seconds" (change)="updateTime()"/>
+                          </div>
+                          <div>
+                            <button (click)="startTimer()" [disabled]="isRunning">Start</button>
+                            <button (click)="stopTimer()" [disabled]="!isRunning">Stop</button>
+                          </div>
+                          <div>
+                            {{formattedTime}}
+                          </div>
+                         -->
+                        </td>
+                    </tr>
+
+        
+                </tbody>
+
+            </table>
+        </div>
+      
+       <div>
+
+        
+           
+        <div>
+          <label>Hours:</label>
+          <input type="number" [(ngModel)]="hours" (change)="updateTime()"/>
+          <label>Minutes:</label>
+          <input type="number" [(ngModel)]="minutes" (change)="updateTime()"/>
+          <label>Seconds:</label>
+          <input type="number" [(ngModel)]="seconds" (change)="updateTime()"/>
+        </div>
+        <div>
+          <button (click)="startTimer()" [disabled]="isRunning">Start</button>
+          <button (click)="stopTimer()" [disabled]="!isRunning">Stop</button>
+        </div>
+        <div>
+          {{formattedTime}}
+        </div>
+   
+
+</div>
